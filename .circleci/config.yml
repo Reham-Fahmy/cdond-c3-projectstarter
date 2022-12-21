@@ -16,7 +16,6 @@ commands:
          name: Install Ansible
          command: |
            python3 -m pip install --user ansible
-
  destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
@@ -31,7 +30,6 @@ commands:
                 aws s3 rm s3://udapeople-${Workflow_ID } --recursive
                 aws cloudformation delete-stack --stack-name udapeople-frontend-${Workflow_ID }
                 aws cloudformation delete-stack --stack-name udapeople-backend-${Workflow_ID }
-
 jobs:
   build-frontend:
     docker:
@@ -206,11 +204,10 @@ jobs:
        command: |
          cd .circleci/ansible
          cat inventory.txt
-
          ansible-playbook -i inventory.txt configure-server.yml
     - destroy-environment
   
-run-migrations:
+  run-migrations:
     docker:
       # Docker image here that supports NodeJS
     steps:
@@ -322,7 +319,6 @@ cleanup:
               # your code here
             fi
             
-
       
          
 workflows:

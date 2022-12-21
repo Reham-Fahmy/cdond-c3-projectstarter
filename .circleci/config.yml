@@ -151,10 +151,13 @@ jobs:
           npm audit fix 
   deploy-infrastructure:
       docker:
-        - image: cimg/python:3.10
+        - image: amazon/aws-cli
       steps:
         - checkout
-        - install_awscli
+        - run:
+           name: Install tar utility
+           command: |
+             yum install -y tar gzip
         - run:
             name: Ensure frontend infrastructure exist
             command: |

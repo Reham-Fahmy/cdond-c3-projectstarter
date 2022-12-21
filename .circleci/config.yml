@@ -17,12 +17,12 @@ commands:
          command: |
            python3 -m pip install --user ansible
 
-destroy-environment:
+ destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
       Workflow_ID:
          default:  ${CIRCLE_WORKFLOW_ID:0:7}
-      steps:
+    steps:
          - run:
              name: Destroy environments
              when: on_fail

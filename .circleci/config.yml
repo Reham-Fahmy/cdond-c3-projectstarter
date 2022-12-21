@@ -17,19 +17,19 @@ commands:
          command: |
            python3 -m pip install --user ansible
 
- # destroy-environment:
-  #  description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
-   # parameters:
-    #  Workflow_ID:
-     #     default:  ${CIRCLE_WORKFLOW_ID:0:7}
-    #steps:
-     #  - run:
-      #    name: Destroy environments
-       #   when: on_fail
-        #  command: |
-         #        aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
-          #       aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
-           #      aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
+destroy-environment:
+    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+    parameters:
+      Workflow_ID:
+         default:  ${CIRCLE_WORKFLOW_ID:0:7}
+      steps:
+         - run:
+             name: Destroy environments
+             when: on_fail
+             command: |
+                aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+                aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
+                aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
 
 jobs:
   build-frontend:
@@ -188,7 +188,26 @@ jobs:
             paths:
               - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure 
-    
+
+  configure-infrastructure:
+    docker:
+    - image: cimg/python:3.10
+    steps:
+    - checkout
+    - install_ansible
+    - install_awscli
+    - add_ssh_keys:
+       fingerprints: ["de:7d:9e:ac:65:62:6f:1c:44:74:ea:84:98:76:ae:8e"]
+    - attach_workspace:
+        at: ~/
+    - run:
+       name: Run Configure Server Ansible play
+       command: |
+         cd .circleci/ansible
+         cat inventory.txt
+
+         ansible-playbook -i inventory.txt configure-server.yml
+    - destroy-environment
   
 
       

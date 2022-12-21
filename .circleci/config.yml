@@ -1,27 +1,53 @@
 version: 2.1
 
-
-            
 jobs:
   build-frontend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
-     
-      - run: npm i
-      - run: npm run build
+      - restore_cache:
+          keys:
+            - frontend-deps-{{ checksum "frontend/package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: |
+            cd frontend
+            npm install
+      - run:
+          name: Build frontend
+          command: |
+            cd frontend
+            npm run build
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-deps-{{ checksum "frontend/package-lock.json" }}
+    
 
   build-backend:
     docker:
-      - image: circleci/node:13.8.0
+    - image: cimg/node:13.8.0
     steps:
-      - checkout
-      
-      - run: npm i
-      - run: npm run build
+    - checkout
+    - restore_cache:
+       keys:
+         - backend-deps-{{ checksum "backend/package-lock.json" }}
+    - run:
+        name: Install dependencies
+        command: |
+          cd backend
+          npm install
+    - run:
+        name: Build backend
+        command: |
+          cd backend
+          npm run build
+    - save_cache:
+        paths: [backend/node_modules]
+        key: backend-deps-{{ checksum "backend/package-lock.json" }}
+
 workflows:
-  default:
+  my_workflow:
     jobs:
       - build-frontend
       - build-backend

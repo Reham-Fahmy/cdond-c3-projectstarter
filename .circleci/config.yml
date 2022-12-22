@@ -343,14 +343,11 @@ jobs:
       - revert-migrations
 
   smoke-test:
-    docker:
-      - image: amazon/aws-cli
+    docker :
+    - image: alpine:latest
     steps:
-
-      - checkout
+      - run: apk add --update curl
       
-      - install_awscli
-      - install_nodejs
   
       
       - run:

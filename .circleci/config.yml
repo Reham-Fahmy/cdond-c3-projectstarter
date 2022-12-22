@@ -348,7 +348,7 @@ jobs:
     steps:
 
       - checkout
-      - run: apk add --update curl
+      
       - install_awscli
       - install_nodejs
   

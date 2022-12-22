@@ -344,11 +344,12 @@ jobs:
 
   smoke-test:
     docker :
-    - image: alpine:latest
+    - image: cimg/python:3.10
     steps:
-      - run: apk add --update curl
-      
-  
+      - checkout
+      - install_ansible
+      - install_awscli
+      - install_nodejs
       
       - run:
           name: Get backend url

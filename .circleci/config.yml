@@ -347,6 +347,8 @@ jobs:
   smoke-test:
     docker:
       - image: alpine:latest
+    steps:
+
       - checkout
       - install_awscli
       - install_nodejs

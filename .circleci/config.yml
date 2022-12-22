@@ -1,3 +1,5 @@
+
+
 version: 2.1
 commands:
  install_awscli:
@@ -39,7 +41,6 @@ commands:
             # Install Node.js LTS version as our base Node.js version
             curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
             sudo apt install -y nodejs
-
             # Use n version manager to use Node.js v13.8.0
             sudo npm install --global n
             sudo n 13.8.0
@@ -55,7 +56,6 @@ commands:
           when: on_fail
           command: |
             SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
-
             # Logic for reverting the database state
             if (( $SUCCESS == 1 ));
             then
@@ -290,7 +290,6 @@ jobs:
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text)
-
               echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030" >> frontend/.env
               cat frontend/.env
       - run:
@@ -329,7 +328,6 @@ jobs:
            cd backend
            npm run build
            tar -czf artifact.tar.gz dist/* package*
-
            cd ..
            cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
       - run:
@@ -338,7 +336,6 @@ jobs:
                export TYPEORM_MIGRATIONS_DIR=./migrations
                export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
                export TYPEORM_MIGRATIONS=./migrations/*.ts
-
                cd .circleci/ansible
                cat inventory.txt
                ansible-playbook -i inventory.txt deploy-backend.yml
@@ -434,3 +431,4 @@ workflows:
       - cloudfront-update:
           requires: [smoke-test]
      
+

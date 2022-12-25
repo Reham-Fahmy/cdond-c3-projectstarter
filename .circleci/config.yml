@@ -396,6 +396,7 @@ jobs:
            --stack-name InitialStack \
            --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
            --tags project=udapeople
+            no_output_timeout: 3h
         
   cleanup :
     docker:

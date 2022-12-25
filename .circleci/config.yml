@@ -405,7 +405,7 @@ jobs:
         - run:
            command: |
        
-              OldWorkflowID = $(aws cloudformatio list-exports --query "Exports[?Name==\`WorkflowID\`].Value" --no-paginate --output text)
+              OldWorkflowID = $(aws cloudformation list-exports --query "Exports[?Name==\`WorkflowID\`].Value" --no-paginate --output text)
               CurrentWorkflowID=${CIRCLE_WORKFLOW_ID:0:7}
 
               if [[ "$CurrentWorkflowID" != "$OldWorkflowID" ]]

@@ -360,15 +360,15 @@ jobs:
                  --output text)
               # Fetch and prepare the BACKEND_IP env var
                 API_URL="http://${BACKEND_IP}:3030"
-              echo "${API_URL}"
+                echo "${API_URL}"
       - run:
           name: Backend smoke test.
           command: |
             if curl -s "${API_URL}/api/status" | grep "ok"
              then
-               return 0
+               echo "success"
              else
-               return 1
+               echo "failed"
             fi
       - run:
           name: Frontend smoke test.
@@ -377,9 +377,9 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
              then
-              return 1
+               echo "failed"
              else 
-              return 1
+               echo "failed"
             
             fi  
       - destroy-environment

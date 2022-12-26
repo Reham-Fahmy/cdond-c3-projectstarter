@@ -332,7 +332,7 @@ jobs:
       - run:
          name: Deploy backend
          command: |
-               no_output_timeout: 3h
+               
                export TYPEORM_MIGRATIONS_DIR=./migrations
                export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
                export TYPEORM_MIGRATIONS=./migrations/*.ts
@@ -340,6 +340,7 @@ jobs:
                echo "${BACKEND_IP}" >> inventory.txt
                cat inventory.txt
                ansible-playbook -i inventory.txt deploy-backend.yml
+               no_output_timeout: 3h
       - destroy-environment
       - revert-migrations
 

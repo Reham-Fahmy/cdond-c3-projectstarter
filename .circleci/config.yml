@@ -28,9 +28,9 @@ commands:
              name: Destroy environments
              when: on_fail
              command: |
-                aws s3 rm s3://${Workflow_ID } --recursive
-                aws cloudformation delete-stack --stack-name udapeople-frontend-${Workflow_ID }
-                aws cloudformation delete-stack --stack-name udapeople-backend-${Workflow_ID }
+                aws s3 rm s3://${Workflow_ID} --recursive
+                aws cloudformation delete-stack --stack-name udapeople-frontend-${Workflow_ID}
+                aws cloudformation delete-stack --stack-name udapeople-backend-${Workflow_ID}
  install_nodejs:
     description: Install Node.js 13.8.0
     steps:

@@ -15,7 +15,7 @@
     synchronize:
       src: ../../backend/dist
       dest: /home/ubuntu/uda_app
-      recursive: true
+      
 
       
 
@@ -24,7 +24,7 @@
     synchronize:
       src: ../../backend/node_modules
       dest: /home/ubuntu/uda_app
-      recursive: true
+     
      
 
   - name: "delete anything that might already be running"

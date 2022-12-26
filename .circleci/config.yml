@@ -344,7 +344,7 @@ jobs:
 
   smoke-test:
     docker :
-    - image: python:3.9.0-alpine
+    - image: cimg/python:3.10
     steps:
       - checkout
       - install_ansible
@@ -361,12 +361,17 @@ jobs:
               # Fetch and prepare the BACKEND_IP env var
               export API_URL="http://${BACKEND_IP}:3030"
               echo "${API_URL}"
+      - run : 
+           name: add ~/.profile
+           command : export SWIFT_TEST_CONFIG_FILE=/etc/swift/test.conf >>  ~/.profile
       - run:
           name: Backend smoke test.
           command: |
             if curl "${API_URL}/api/status" | grep "ok"
             then
                return 0
+            else 
+               return 1
             fi
       - run:
           name: Frontend smoke test.
@@ -376,7 +381,9 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
              
-              echo " success"
+              return 0
+            else 
+              return 1
             
             fi  
       - destroy-environment

@@ -486,10 +486,7 @@ workflows:
 
       ## INFRASTRUCTURE
       - deploy-infrastructure:
-          filters:
-            branches:
-              only:
-                - master
+          
       - configure-infrastructure:
           requires:
             - deploy-infrastructure
@@ -500,10 +497,7 @@ workflows:
             - scan-backend
             - scan-frontend
             - configure-infrastructure
-          filters:
-            branches:
-              only:
-                - master
+          
       - deploy-backend:
           requires:
             - run-migrations

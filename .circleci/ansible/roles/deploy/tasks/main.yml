@@ -12,7 +12,7 @@
 
   - name: "copy backend binaries"
     become: yes
-    synchronize:
+    copy:
       src: ../../backend/dist
       dest: /home/ubuntu/uda_app
       
@@ -21,7 +21,7 @@
 
   - name: "copy node_modules"
     become: yes
-    synchronize:
+    copy:
       src: ../../backend/node_modules
       dest: /home/ubuntu/uda_app
      

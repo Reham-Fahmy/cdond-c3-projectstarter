@@ -2,6 +2,7 @@
   - name: "show remote environment"
     shell: env
   - name: "Installing Rsync"
+    become: yes
     apt: >
           pkg=rsync
           state=latest

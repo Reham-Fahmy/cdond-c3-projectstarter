@@ -343,13 +343,18 @@ jobs:
       - revert-migrations
 
   smoke-test:
-    docker :
-    - image: cimg/python:3.10
+    docker:
+      - image: python:3.7-alpine3.11 
     steps:
       - checkout
-      - install_ansible
-      - install_awscli
-      - install_nodejs
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache curl
+            apk add --no-cache --upgrade bash
+            apk add --no-cache --update ansible
+            apk add --no-cache openssh-client
+            pip3 install awscli
       
       - run:
           name: Get backend url and backend smoke test
@@ -377,8 +382,8 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment
-      - revert-migrations
+       - destroy-environment
+       - revert-migrations
 
   cloudfront-update:
     docker:

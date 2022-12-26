@@ -3,12 +3,11 @@
     shell: env
   - name: "Installing Rsync"
     apt: >
-          pkg={{ item }}
+          pkg=rsync
           state=latest
           update_cache=yes
           cache_valid_time=3600
-    with_items:
-    - rsync
+    
 
   - name: "copy backend binaries"
     become: yes

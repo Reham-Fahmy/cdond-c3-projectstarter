@@ -434,16 +434,8 @@ jobs:
               STACKS=($(aws cloudformation list-stacks --query"StackSummaries[*].StackName* --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
               echo"${OldWorkflowID}"
               echo"${STACKS}"
-              if [[ "$STACK[0]]" != "$OldWorkflowID" ]]
-              then
-                
-                aws s3 rm "s3://${OldWorkflowID}" --recursive
-                aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
-                aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
-              else
-                echo  "nothing needs to be done..."
-              fi
-
+              
+             
                 
 
            

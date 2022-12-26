@@ -344,7 +344,7 @@ jobs:
 
   smoke-test:
     docker :
-    - image: cimg/python:3.10
+    - image: python:3.9.0-alpine
     steps:
       - checkout
       - install_ansible

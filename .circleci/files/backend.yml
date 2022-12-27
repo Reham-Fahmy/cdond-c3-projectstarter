@@ -1,6 +1,5 @@
 Description: >
   UdaPeople backend stack.
-
 Parameters:
   ID:
     Description: Unique identifier.
@@ -45,7 +44,7 @@ Resources:
       Domain: vpc
       InstanceId: !Ref EC2Instance
       
- Outputs:
+Outputs:
   WorkflowID:
     Value: !Sub ${WorkflowID}
     Description: WorkflowID

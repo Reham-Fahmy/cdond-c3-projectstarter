@@ -437,7 +437,7 @@ jobs:
             
               echo OldWorkflowID: "${OldWorkflowID}"
               echo STACK names : "${STACKS[@]}"
-              if [[ "$STACK[@]" =~ "$OldWorkflowID-be" ]]
+              if [[ "$STACK[@]" == "$OldWorkflowID-be" ]]
               then
                 
                 aws s3 rm "s3://${OldWorkflowID}" --recursive

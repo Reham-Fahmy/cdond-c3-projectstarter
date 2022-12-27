@@ -44,3 +44,10 @@ Resources:
    Properties:
       Domain: vpc
       InstanceId: !Ref EC2Instance
+      
+ Outputs:
+  WorkflowID:
+    Value: !Sub ${WorkflowID}
+    Description: WorkflowID
+    Export:
+      Name: WorkflowID

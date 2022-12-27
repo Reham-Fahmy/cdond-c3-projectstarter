@@ -36,4 +36,4 @@ Outputs:
     Value: !Sub ${ID}
     Description: WorkflowID
     Export:
-      Name: WorkflowID
+      Name: FE-WorkflowID

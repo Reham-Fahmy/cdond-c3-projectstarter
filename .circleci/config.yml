@@ -435,8 +435,8 @@ jobs:
               export OldWorkflowID=$(aws cloudformation list-exports --query "Exports[*][Value]" --no-paginate --output text)
               export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             
-              echo OldWorkflowID: "{OldWorkflowID}"
-              echo STACK names : "{STACKS[@]}"
+              echo OldWorkflowID: "${OldWorkflowID}"
+              echo STACK names : "${STACKS[@]}"
               if [[ "$STACK[@]]" =~ "$OldWorkflowID" ]]
               then
                 

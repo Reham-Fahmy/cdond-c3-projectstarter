@@ -46,7 +46,7 @@ Resources:
       
 Outputs:
   BEWorkflowID:
-    Value: !Sub ${ID}
+    Value: !Sub udapeople-${ID}
     Description: WorkflowID
     Export:
       Name: BE-WorkflowID

@@ -1,5 +1,5 @@
 Description: >
-  UdaPeople backend stack.
+  UdaPeople backend stacks.
 Parameters:
   ID:
     Description: Unique identifier.

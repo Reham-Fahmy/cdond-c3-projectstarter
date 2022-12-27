@@ -33,7 +33,7 @@ Outputs:
     Value: !GetAtt WebsiteBucket.WebsiteURL
     Description: URL for website hosted on S3
   FEWorkflowID:
-    Value: !Sub ${ID}
+    Value: !Sub udapeople-${ID}
     Description: WorkflowID
     Export:
       Name: FE-WorkflowID

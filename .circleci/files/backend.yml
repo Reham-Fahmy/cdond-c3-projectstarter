@@ -45,7 +45,7 @@ Resources:
       InstanceId: !Ref EC2Instance
       
 Outputs:
-  WorkflowID:
+  be-WorkflowID:
     Value: !Sub ${ID}
     Description: WorkflowID
     Export:

@@ -116,7 +116,7 @@ jobs:
        keys:
          - backend-deps-{{ checksum "backend/package-lock.json" }}
     - run:
-        name: Install dependencies
+        name: Install dependenciess
         command: |
           cd backend
           npm install

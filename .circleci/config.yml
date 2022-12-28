@@ -441,7 +441,11 @@ jobs:
             echo OLDWORKflowID : "${OldWorkflowID[@]}"
             # Delete old stacks
             chmod +x .circleci/files/cleanStacks.sh
-            ./.circleci/files/cleanStacks.sh "${CIRCLE_WORKFLOW_ID:0:7}" "${STACKS[@]}"
+            
+            if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID[@]}" ]]
+            then
+            ./.circleci/files/cleanStacks.sh "${OldWorkflowID[@]}"
+            
       
 
          

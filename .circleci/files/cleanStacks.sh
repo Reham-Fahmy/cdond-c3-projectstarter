@@ -1,7 +1,7 @@
 flowID=$1
 STACKS=$2
 echo "flowID: $flowID"
-echo "STACKS: $STACKS"
+echo "STACKS: $STACKS[@]"
 
 for stack in $STACKS[@]
 do

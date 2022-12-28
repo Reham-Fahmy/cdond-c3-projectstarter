@@ -1,5 +1,5 @@
 flowID=$1
-STACKS=$@
+STACKS=$2
 echo "flowID: $flowID"
 echo "STACKS: $STACKS"
 
@@ -20,7 +20,7 @@ else
   echo "Deleting $stack"
   echo "URL: s3://udapeople-$BUCKETNAME"
   aws s3 rb "s3://udapeople-$BUCKETNAME" --force
-  aws cloudformation delete-stack --stack-name "udapeople-backend-$flowID"
-  aws cloudformation delete-stack --stack-name "udapeople-frontend-$flowID"
+  aws cloudformation delete-stack --stack-name "udapeople-$flowID-be"
+  aws cloudformation delete-stack --stack-name "udapeople-$flowID-fe"
 fi
 done

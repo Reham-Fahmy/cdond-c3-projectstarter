@@ -444,7 +444,8 @@ jobs:
             
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID[@]}" ]]
             then
-            ./.circleci/files/cleanStacks.sh "${OldWorkflowID[@]}"
+                ./.circleci/files/cleanStacks.sh "${OldWorkflowID[@]}"
+            fi
             
       
 

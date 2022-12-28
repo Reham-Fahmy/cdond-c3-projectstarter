@@ -3,7 +3,7 @@ STACKS=$2
 echo "flowID: $flowID"
 echo "STACKS: $STACKS"
 
-for stack in $STACKS
+for stack in $STACKS[@]
 do
 BUCKETNAME=${stack: -7}
 echo "BUCKETNAME: $BUCKETNAME"

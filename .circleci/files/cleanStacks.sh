@@ -11,7 +11,7 @@ if [[ $stack =~ "$flowID" ]]
 then
   echo "Keeping $stack because equal"
 fi
-if [[ $stack =! "$flowID" ]]
+if [[ $stack != "$flowID" ]]
 then
   echo "Deleting $stack"
   echo "URL: s3://udapeople-$BUCKETNAME"

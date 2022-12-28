@@ -281,7 +281,7 @@ jobs:
           command: |
              if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
                then
-                  curl https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+                  curl https://kvdb.io/YLrQoKsZ11xXxEAm8pAs49/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
                else
                   echo "No migrations are pending" 
                   
@@ -442,6 +442,7 @@ jobs:
             # Delete old stacks
             chmod +x .circleci/files/cleanStacks.sh
             for i in "${OldWorkflowID[@]}"
+            do
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID[@]}" ]]
             then
                 ./.circleci/files/cleanStacks.sh "${OldWorkflowID[@]}"

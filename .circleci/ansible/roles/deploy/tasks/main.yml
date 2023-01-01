@@ -13,10 +13,10 @@
     npm i
     
 - name: install and start app
-    command:  pm2 start main.js
-    args:
+  command:  pm2 start main.js
+  args:
       chdir: ~/be-app/dist
-    environment:
+  environment:
       ENVIRONMENT: production
       TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
       TYPEORM_MIGRATIONS_DIR: "./migrations"
@@ -33,7 +33,6 @@
     cd ~/backend-app/dist
     pm2 stop default
     pm2 start main.js
-
   register: execute_node
 
 - name: print message

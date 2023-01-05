@@ -11,7 +11,7 @@ commands:
       default: ${CIRCLE_WORKFLOW_ID:0:7}
     steps:
       - run:
-          name: Destroy environments
+        name: Destroy environments
         when: on_fail
         command: |
           # Empty frontend bucket

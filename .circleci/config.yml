@@ -298,7 +298,6 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt 
             BACKEND_PUBLIC_IP=$(tail -n 1 "inventory.txt") 
-            cd frontend
             echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030"   >>   frontend/.env
             cat frontend/.env
       - run:

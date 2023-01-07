@@ -282,6 +282,8 @@ jobs:
       - checkout
       - install_awscli
       - install_nodejs
+      - attach_workspace:
+                  at: ~/
       - restore_cache:
            keys: [backend-deps]
       - run:
@@ -289,19 +291,17 @@ jobs:
           command: |
              cd frontend
              npm install
-      - run:
-          name: Get backend url
-          command: |
-              - attach_workspace:
-                  at: ~/
+      
       - run:
          name: Run Configure Server Ansible play
          command: |
             cd .circleci/ansible
             cat inventory.txt 
             BACKEND_PUBLIC_IP = $ (echo inventory.txt)
-            
-            echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030" >> frontend/.env
+            cd
+            cd 
+            cd frontend
+            echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030"   >>   frontend/.env
             cat frontend/.env
       - run:
           name: Deploy frontend objects

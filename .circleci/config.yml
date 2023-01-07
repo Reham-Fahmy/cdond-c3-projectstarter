@@ -292,7 +292,7 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            
+              cd frontend/
               cat frontend/.env
       - run:
           name: Deploy frontend objects

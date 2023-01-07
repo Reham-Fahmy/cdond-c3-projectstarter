@@ -297,7 +297,7 @@ jobs:
          command: |
             cd .circleci/ansible
             cat inventory.txt 
-            BACKEND_PUBLIC_IP = $ (echo inventory.txt)
+            BACKEND_PUBLIC_IP = $(echo "inventory.txt")
             cd
             cd 
             cd frontend

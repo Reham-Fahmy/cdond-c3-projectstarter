@@ -414,30 +414,28 @@ jobs:
         
   cleanup :
     docker:
-      - image: cimg/base:stable
+      - image: amazon/aws-cli
     steps:
       - checkout
-      - install_awscli
       - run:
           name: Get old stack workflow id
           command: |
-            # Fetch the Old workflow ID
-            export OldWorkflowID=$(aws cloudformation list-exports --query "Exports[*][Value]" --no-paginate --output text)
-            echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
-            # Fetch the stack names          
+            export OldWorkflowID=$(aws cloudformation \
+                    list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+                    --no-paginate --output text)
+            echo OldWorkflowID: "${OldWorkflowID}"
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-            --stack-status-filter CREATE_COMPLETE --no-paginate --output text)) 
+                    --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo Stack names: "${STACKS[@]}"
-            echo OLDWORKflowID : "${OldWorkflowID[@]}"
-            # Delete old stacks
-            chmod +x .circleci/files/cleanStacks.sh
-            for i in "${OldWorkflowID[@]}"
-            do
-            if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID[@]}" ]]
-            then
-                ./.circleci/files/cleanStacks.sh "${OldWorkflowID[@]}"
+      
+            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+               then
+                  
+                  aws s3 rm "s3://${OldWorkflowID}" --recursive
+                  aws cloudformation delete-stack --stack-name "udapeople-${OldWorkflowID}-fe"
+                  aws cloudformation delete-stack --stack-name "udapeople-${OldWorkflowID}-be"
+               
             fi
-            done
       
 
          

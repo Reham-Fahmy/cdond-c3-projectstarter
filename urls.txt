@@ -1,2 +1,0 @@
-https://github.com/Reham-Fahmy/cdond-c3-projectstarter.git
-http://udapeople-c0f94af.s3-website-us-east-1.amazonaws.com/#/employees

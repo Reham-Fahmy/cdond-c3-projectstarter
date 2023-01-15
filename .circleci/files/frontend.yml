@@ -3,7 +3,7 @@ Description: >
 
 Parameters:
   ID:
-    Description: Unique identifier.
+    Description: Unique identifier
     Type: String
 
 Resources:
@@ -36,4 +36,4 @@ Outputs:
     Value: !Sub udapeople-${ID}
     Description: WorkflowID
     Export:
-      Name: FE-WorkflowID-FE
+      Name: FE-WorkflowID-F

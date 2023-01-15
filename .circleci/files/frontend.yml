@@ -36,4 +36,4 @@ Outputs:
     Value: !Sub udapeople-${ID}
     Description: WorkflowID
     Export:
-      Name: FE-WorkflowID-F
+      Name: FE-WorkflowID-FE
